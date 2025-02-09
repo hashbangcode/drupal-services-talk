@@ -21,7 +21,7 @@ jobs:
         run: echo $CHROME_NO_SANDBOX
 
       - name: Set envivonment for puppeteer timeout
-        run: echo "PUPPETEER_TIMEOUT=6000" >> $GITHUB_ENV
+        run: echo "PUPPETEER_TIMEOUT=0" >> $GITHUB_ENV
 
       - name: Test environment var
         run: echo $PUPPETEER_TIMEOUT

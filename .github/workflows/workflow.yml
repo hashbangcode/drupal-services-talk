@@ -15,11 +15,16 @@ jobs:
       - name: Check out repository code.
         uses: actions/checkout@v4
 
-      - name: Set env
+      - name: Set envivonment var for chrome sandbox
         run: echo "CHROME_NO_SANDBOX=1" >> $GITHUB_ENV
-
-      - name: Test
+      - name: Test environment var
         run: echo $CHROME_NO_SANDBOX
+
+      - name: Set envivonment for puppeteer timeout
+        run: echo "PUPPETEER_TIMEOUT=6000" >> $GITHUB_ENV
+
+      - name: Test environment var
+        run: echo $PUPPETEER_TIMEOUT
 
       - name: Install Node.js
         uses: actions/setup-node@v4

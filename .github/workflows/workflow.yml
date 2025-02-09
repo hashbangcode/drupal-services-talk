@@ -17,13 +17,12 @@ jobs:
 
       - name: Set envivonment var for chrome sandbox
         run: echo "CHROME_NO_SANDBOX=1" >> $GITHUB_ENV
-      - name: Test environment var
+      - name: Test chrome environment var
         run: echo $CHROME_NO_SANDBOX
 
       - name: Set envivonment for puppeteer timeout
         run: echo "PUPPETEER_TIMEOUT=0" >> $GITHUB_ENV
-
-      - name: Test environment var
+      - name: Test puppet environment var
         run: echo $PUPPETEER_TIMEOUT
 
       - name: Install Node.js

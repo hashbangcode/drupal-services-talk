@@ -15,6 +15,12 @@ jobs:
       - name: Check out repository code.
         uses: actions/checkout@v4
 
+      - name: Set env
+        run: echo "CHROME_NO_SANDBOX=1" >> $GITHUB_ENV
+
+      - name: Test
+        run: echo $CHROME_NO_SANDBOX
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:

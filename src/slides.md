@@ -449,7 +449,66 @@ This follows SOLID principles again, in this case the dependency inversion princ
 
 ---
 
-autowire?
+## Creating Services - Autowiring
+
+- You don't need to add all of your dependencies by hand, you can use autowiring to do this for you.
+- Autowiring works by nominating services that correspond to interfaces.
+
+```yml
+services:
+  Drupal\Component\Serialization\SerializationInterface: '@serialization.json'
+```
+<!--
+Here, 
+-->
+---
+
+## Creating Services - Autowiring
+
+- Then, we need to add the `autowire: true` directive to the service definition for our service.
+
+```yml
+services:
+  services_autowire_example.autowire_example:
+    class: \Drupal\services_autowire_example\AutowireExample
+    autowire: true
+```
+
+---
+
+
+## Creating Services - Autowiring
+
+- Alternatively, you can set a default in your service file that all services will be autowired.
+
+```yml
+services:
+  _defaults:
+    autowire: true
+
+  services_autowire_example.autowire_example:
+    class: \Drupal\services_autowire_example\AutowireExample
+```
+
+---
+<!-- _footer: "" -->
+## Creating Services - Autowiring
+
+- Create your class as normal. The interfaces you nominate will be translated into services and automatically injected into your constructor.
+
+```php
+<?php
+
+namespace Drupal\services_autowire_example;
+
+use Drupal\Component\Serialization\SerializationInterface;
+
+class AutowireExample implements AutowireExampleInterface {
+
+  public function __construct(protected SerializationInterface $serializer) {
+  }
+}
+```
 
 ---
 
@@ -459,7 +518,7 @@ autowire?
 <!-- _footer: "" -->
 ## Controllers And Forms
 
-- Some types of Drupal object don't use the services system.
+- Some types of Drupal object (especially Controllers and Forms) don't use *.services.yml files.
 * Instead they implement `\Drupal\Core\DependencyInjection\ContainerInjectionInterface`.
 * Drupal will see this and use a method called `create()` to create the service.
 * The `create()` method must return an instance of the service object.  
@@ -468,7 +527,7 @@ autowire?
 <!-- _footer: "" -->
 ## Controllers And Forms
 
-- Best practice is to assign the properties you need in the create() method.
+- Best practice is to assign the properties you need in the `create()` method.
 
 ```php
 class ControllerExample extends ControllerBase {
@@ -489,7 +548,13 @@ class ControllerExample extends ControllerBase {
 ## Plugins
 
 - Plugins have a similar interface called `\Drupal\Core\Plugin\ContainerFactoryPluginInterface`
-- This has the same `create()` method.
+- This has the same `create()` method system, although you need to pass the plugin arguments to the parent controller.
+
+
+
+<!--
+Plugins work in the same way, but plugins will have additional arguments that need to be passed upstream. 
+-->
 
 ---
 
@@ -516,7 +581,73 @@ class ControllerExample extends ControllerBase {
 
 ---
 
+## Altering Services
 
+- All services can be modified to change their funcitonality.
+- This can be done in two ways, depending on your needs.
+  - Decorating
+  - Altering
+
+---
+
+## Altering Services: Decorating
+
+- Serivices can be decorated to create your own serive that extends another service.
+- The original service will still exist, but you will have a new service that accepts the same arguments.
+
+```yml
+services:
+  services_decorator_example.decorated_json:
+    class: \Drupal\services_decorator_example\DecoratedJson
+    decorates: serialization.json
+```
+<!--
+Here, we are decorating the serialization.json and creating our own service called services_decorator_example.decorated_json.
+The critical thing is that the existing service class still exists. The new service just extends that.
+-->
+---
+<!-- _footer: "" -->
+## Altering Services: Altering
+
+- Override the serivce completely and replace it with your own.
+
+- Create a class that has the name [ModuleName]SerivceProvider, which extends the class `\Drupal\Core\DependencyInjection\ServiceProviderBase`.
+- Drupal will pick up this class and run the `register()` and `alter()` methods.
+
+<!-- 
+Use register() to register a new service in Drupal. Useful for highly dynamic services where you want to automatically discover your services at run time.
+
+Use alter() to alter the service registry and change any registered service in the site.
+-->
+---
+<!-- _footer: "" -->
+## Altering Services: Altering
+
+- The `alter()` method is can be used to alter an existing service.
+
+```php
+<?php
+
+namespace Drupal\joke_api_stub;
+
+use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\Core\DependencyInjection\ServiceProviderBase;
+
+class JokeApiStubServiceProvider extends ServiceProviderBase {
+  public function alter(ContainerBuilder $container) {
+    // Replace the \Drupal\joke_api\JokeApi class with our own stub class.
+    $definition = $container->getDefinition('joke_api.joke');
+    $definition->setClass('Drupal\joke_api_stub\JokeApiStub');
+  }
+}
+```
+<!--
+Here, we are altering the joke_api.joke service to replace it with our a stub service that doesn't integrate with the Joke API.
+-->
+
+---
+
+# Demo!
 
 ---
 
@@ -524,7 +655,8 @@ class ControllerExample extends ControllerBase {
 
 There's much more to Drupal services, try looking up
 
-- Decoration of services
+
+- autoconfigure: true
 - Tagged services
 - Access control
 - Logging

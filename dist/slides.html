@@ -437,7 +437,7 @@ p.centre {
 <ul>
 <li>However! Most of the time you don't want to be using <code>\Drupal::service()</code>.</li>
 <li>Drupal will inject the services you need into your service.</li>
-<li>This is called <strong>dependency innjection</strong>.</li>
+<li>This is called <strong>dependency injection</strong>.</li>
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -861,7 +861,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="52" data-size="16:9">
-<p>The <code>$cache</code> property is an object of type <code>\Drupal\Core\Cache\CacheFactoryInterface</code>, so we can use <code>\Drupal\Core\Cache\CacheFactory</code> to create this. We first need to create to create a <code>\Drupal\Core\Site\Settings</code> object to create that.</p>
+<p>The <code>$cache</code> property is an object of type <code>\Drupal\Core\Cache\CacheFactoryInterface</code>, so we can use <code>\Drupal\Core\Cache\CacheFactory</code> to create this. We first need to create a <code>\Drupal\Core\Site\Settings</code> object to create that.</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Drupal</span>\<span class="hljs-title">path_alias</span>\<span class="hljs-title">AliasManager</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Drupal</span>\<span class="hljs-title">path_alias</span>\<span class="hljs-title">AliasPrefixList</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Drupal</span>\<span class="hljs-title">path_alias</span>\<span class="hljs-title">AliasRepository</span>;
@@ -1661,7 +1661,7 @@ p.centre {
 ;" data-marpit-pagination-total="52" data-size="16:9">
 <h2 id="altering-services-decorating">Altering Services: Decorating</h2>
 <ul>
-<li>Serivices can be decorated to create your own serive that extends another service.</li>
+<li>Services can be decorated to create your own serive that extends another service.</li>
 <li>The original service will still exist, but you will have a new service that accepts the same arguments.</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
@@ -1702,7 +1702,7 @@ p.centre {
 <p>Override the serivce completely and replace it with your own.</p>
 </li>
 <li>
-<p>Create a class that has the name [ModuleName]SerivceProvider, which extends the class <code>\Drupal\Core\DependencyInjection\ServiceProviderBase</code>.</p>
+<p>Create a class that has the name <code>[ModuleName]ServiceProvider</code>, which extends the class <code>\Drupal\Core\DependencyInjection\ServiceProviderBase</code>.</p>
 </li>
 <li>
 <p>Drupal will pick up this class and run the <code>register()</code> and <code>alter()</code> methods.</p>
@@ -1810,7 +1810,7 @@ p.centre {
 <h1 id="next-steps">Next Steps</h1>
 <p>There's much more to Drupal services, try looking up</p>
 <ul>
-<li>autoconfigure: true</li>
+<li><code>autoconfigure: true</code></li>
 <li>Tagged services</li>
 <li>Access control</li>
 <li>Logging</li>

@@ -134,7 +134,7 @@ $normalPath = \Drupal::service('path_alias.manager')->getPathByAlias('somepath')
 
 - However! Most of the time you don't want to be using `\Drupal::service()`.
 - Drupal will inject the services you need into your service.
-- This is called <strong>dependency innjection</strong>.
+- This is called <strong>dependency injection</strong>.
 
 ---
 
@@ -293,7 +293,7 @@ $aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageM
 ---
 <!-- _footer: "" -->
 
-The `$cache` property is an object of type `\Drupal\Core\Cache\CacheFactoryInterface`, so we can use `\Drupal\Core\Cache\CacheFactory` to create this. We first need to create to create a `\Drupal\Core\Site\Settings` object to create that.
+The `$cache` property is an object of type `\Drupal\Core\Cache\CacheFactoryInterface`, so we can use `\Drupal\Core\Cache\CacheFactory` to create this. We first need to create a `\Drupal\Core\Site\Settings` object to create that.
 
 ```php
 use Drupal\path_alias\AliasManager;
@@ -592,7 +592,7 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 
 ## Altering Services: Decorating
 
-- Serivices can be decorated to create your own serive that extends another service.
+- Services can be decorated to create your own serive that extends another service.
 - The original service will still exist, but you will have a new service that accepts the same arguments.
 
 ```yml
@@ -611,7 +611,7 @@ The critical thing is that the existing service class still exists. The new serv
 
 - Override the serivce completely and replace it with your own.
 
-- Create a class that has the name [ModuleName]SerivceProvider, which extends the class `\Drupal\Core\DependencyInjection\ServiceProviderBase`.
+- Create a class that has the name `[ModuleName]ServiceProvider`, which extends the class `\Drupal\Core\DependencyInjection\ServiceProviderBase`.
 - Drupal will pick up this class and run the `register()` and `alter()` methods.
 
 <!-- 
@@ -656,7 +656,7 @@ Here, we are altering the joke_api.joke service to replace it with our a stub se
 There's much more to Drupal services, try looking up
 
 
-- autoconfigure: true
+- `autoconfigure: true`
 - Tagged services
 - Access control
 - Logging

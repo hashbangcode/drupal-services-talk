@@ -64,8 +64,21 @@ Drupal services are an integral part of how Drupal is structured internally. Eve
 
 This talk will introduce you to what services are and how to use them. We'll talk about why they are used and then go onto building our own services.
 
-This talk will assume you have some understanding of PHP, but if you get lost then please ask me to talk you throught stuff afterwards.
+This talk will assume you have some understanding of PHP and OOP, but if you get lost then please ask me to talk you throught stuff afterwards.
 -->
+---
+
+# Why Talk About Services?
+
+<!--
+- I gave a version of this talk at DrupalCamp London in 2018.
+- A bit has changed since then so I thought it was time to an update.
+- They are an essential part of Drupal.
+- If you are going to build or maintain a module then you will use services.
+- I quite like back to basics talks.
+- Coming soon are service hooks, meaning that we will soon lose hooks and need to use services instead.
+-->
+
 ---
 
 ## What Is A Service?
@@ -193,8 +206,8 @@ Dependency Inversion principle.
 -->
 ---
 ## Dependency Injection
-- Drupal handles all of the object creation for us and will create services with all of the required objects in place.
-
+- Drupal handles all the dependency creation.
+- It will create services with all of the required objects in place.
 - All we need to do is ask for our service.
 ---
 
@@ -210,13 +223,15 @@ The `path_alias.manager` service wraps the `\Drupal\path_alias\AliasManager` cla
 ```php
 use Drupal\path_alias\AliasManager;
 
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageManager, $cache, $time);
+$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
+$languageManager, $cache, $time);
 ```
 
+<!-- 
 We need to fill in the missing dependencies of `$pathAliasRepository`, `$pathPrefixes`, `$languageManager`, `$cache`, and `$time`.
 
 Let's start with `$pathAliasRepository`.
-
+-->
 ---
 
 The `$pathAliasRepository` property is an instance of `\Drupal\path_alias\AliasRepository`.
@@ -227,7 +242,8 @@ use Drupal\path_alias\AliasRepository;
 
 $pathAliasRepository = new AliasRepository($connection);
 
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageManager, $cache, $time);
+$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, 
+$languageManager, $cache, $time);
 ```
 
 The `AliasRepository` class takes a property of `$connection`.
@@ -244,7 +260,8 @@ use Drupal\Core\Database\Database;
 $connection = Database::getConnection();
 $pathAliasRepository = new AliasRepository($connection);
 
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageManager, $cache, $time);
+$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, 
+$languageManager, $cache, $time);
 ```
 
 Next, let's look at `$pathPrefixes`.
@@ -264,7 +281,8 @@ $pathAliasRepository = new AliasRepository($connection);
 
 $pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
 
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageManager, $cache, $time);
+$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
+$languageManager, $cache, $time);
 ```
 <!--
 We have made a decision here about where the data will come from.
@@ -273,7 +291,7 @@ Which is an ok assumption to make, but this is how hard coded.
 -->
 ---
 
-The `$cid` property of `AliasPrefixList` is easy as that's just a string.
+The `$cid` property of `AliasPrefixList` is just a string.
 
 ```php
 use Drupal\path_alias\AliasManager;
@@ -287,13 +305,12 @@ $pathAliasRepository = new AliasRepository($connection);
 $cid = 'path_alias_whitelist';
 $pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
 
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageManager, $cache, $time);
+$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
+$languageManager, $cache, $time);
 ```
 
 ---
 <!-- _footer: "" -->
-
-The `$cache` property is an object of type `\Drupal\Core\Cache\CacheFactoryInterface`, so we can use `\Drupal\Core\Cache\CacheFactory` to create this. We first need to create a `\Drupal\Core\Site\Settings` object to create that.
 
 ```php
 use Drupal\path_alias\AliasManager;
@@ -306,25 +323,33 @@ $connection = Database::getConnection();
 $pathAliasRepository = new AliasRepository($connection);
 
 $cid = 'path_alias_whitelist';
+
 $settings = Settings::getInstance();
 $default_bin_backends = ['bootstrap' => 'cache.backend.chainedfast'];
 $cacheFactory = new CacheFactory($settings, $default_bin_backends);
 $cache = $cacheFactory->get('bootstrap');
+
 $pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
 
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, $languageManager, $cache, $time);
+$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
+$languageManager, $cache, $time);
 ```
 <!--
+The `$cache` property is an object of type `\Drupal\Core\Cache\CacheFactoryInterface`, so we can use `\Drupal\Core\Cache\CacheFactory` to create this. We first need to create a `\Drupal\Core\Site\Settings` object to create that.
+
 We have now made several assumptions about our settings, the type of cache we will use, where the cache bin is stored.
 This has created very brittle code that is prone to breakage.
 Also, we still have another 3 properties to do just to get AliasPrefixList created! All of which will need objects creating, and some of those objects will have more objects, some of which might need extra stuff adding.
 Then, there's more properties we need to load for AliasManager!
 We are only half way through creating objects.
+
 Worse, every time you want to transform a path you'll need to copy this entire block of code.
 -->
 ---
 
-Anyone else lost?
+Anyone else lost? ...  :/
+
+---
 
 ```php
 $pathManager = \Drupal::service('path_alias.manager');
@@ -365,7 +390,6 @@ class SimpleService implements SimpleServiceInterface {
     return [];
   }
 }
-
 ```
 
 ---
@@ -383,6 +407,21 @@ $array = $simpleService->getArray();
 
 ## Creating Services - Arguments
 
+- Most commonly, we want to inject our service dependencies.
+
+```yml
+services:
+  services_argument_example.single_argument:
+    class: \Drupal\services_argument_example\SingleArgument
+    arguments: ['@password_generator']
+```
+<!--
+We are injecting the service to generate passwords.
+-->
+---
+
+## Creating Services - Arguments
+
 - Your services can accept a number of arguments.
 
   - `@` for another service (`@config.factory`).
@@ -393,24 +432,12 @@ $array = $simpleService->getArray();
 Parameters are set in services files, but can be overridden at runtime by Drupal.
 Strings are used to pass static properties to factories to generate different types of object.
 -->
----
-
-## Creating Services - Arguments
-
-- Most commonly, we want to inject our service dependencies.
-
-```yml
-services:
-  services_argument_example.single_argument:
-    class: \Drupal\services_argument_example\SingleArgument
-    arguments: ['@serialization.json']
-```
 
 ---
 
 ## Creating Services - Arguments
 
-- Our service class needs to accept the arguments.
+- Our service class needs to accept the arguments in the constructor.
 
 ```php
 <?php
@@ -421,12 +448,13 @@ use Drupal\Component\Serialization\SerializationInterface;
 
 class SingleArgument implements SingleArgumentInterface {
 
-  public function __construct(protected SerializationInterface $serializer) {}
+  public function __construct(protected PasswordGeneratorInterface $passwordGenerator) {
+  }
 }
 ```
 <!--
-This is call constructor property promotion. The $serialiser property is created in our class.
-This follows SOLID principles again, in this case the dependency inversion principle.
+This is call constructor property promotion. The $passwordGenerator property is created in our class.
+Requiring the interface follows SOLID principles, in this case the dependency inversion principle.
 -->
 
 ---
@@ -436,15 +464,15 @@ This follows SOLID principles again, in this case the dependency inversion princ
 - The service can be used within the class.
 
 ```php
-  public function removeItemFromPayload(string $payload, int $id):string {
-    $payload = $this->serializer->decode($payload);
-    foreach ($payload as $key => $item) {
-      if ($item['id'] === $id) {
-        unset($payload[$key]);
-      }
-    }
-    return $this->serializer->encode($payload);
+class SingleArgument implements SingleArgumentInterface {
+
+  public function __construct(protected PasswordGeneratorInterface $passwordGenerator) {
   }
+
+  public function generate12CharacterPassword():string {
+    return $this->passwordGenerator->generate(12);
+  }
+}
 ```
 
 ---
@@ -456,10 +484,10 @@ This follows SOLID principles again, in this case the dependency inversion princ
 
 ```yml
 services:
-  Drupal\Component\Serialization\SerializationInterface: '@serialization.json'
+  Drupal\Core\Password\PasswordGeneratorInterface: '@password_generator'
 ```
 <!--
-Here, 
+This is from the Drupal core.services.yml file, where a lot of services are defined.
 -->
 ---
 
@@ -475,7 +503,6 @@ services:
 ```
 
 ---
-
 
 ## Creating Services - Autowiring
 
@@ -518,9 +545,12 @@ class AutowireExample implements AutowireExampleInterface {
 <!-- _footer: "" -->
 ## Controllers And Forms
 
-- Some types of Drupal object (especially Controllers and Forms) don't use *.services.yml files.
-* Instead they implement `\Drupal\Core\DependencyInjection\ContainerInjectionInterface`.
-* Drupal will see this and use a method called `create()` to create the service.
+- Some types of Drupal object (especially Controllers and Forms) don't use `*.services.yml` files.
+* Instead they implement 
+```
+\Drupal\Core\DependencyInjection\ContainerInjectionInterface
+```
+* Drupal will see this and use a method called `create()` in the class to create the service.
 * The `create()` method must return an instance of the service object.  
 
 ---
@@ -547,10 +577,11 @@ class ControllerExample extends ControllerBase {
 ---
 ## Plugins
 
-- Plugins have a similar interface called `\Drupal\Core\Plugin\ContainerFactoryPluginInterface`
+- Plugins have a similar interface called
+```
+\Drupal\Core\Plugin\ContainerFactoryPluginInterface
+```
 - This has the same `create()` method system, although you need to pass the plugin arguments to the parent controller.
-
-
 
 <!--
 Plugins work in the same way, but plugins will have additional arguments that need to be passed upstream. 
@@ -558,13 +589,162 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 
 ---
 
+# Hook Service Classes
+
+---
+
+## Hook Service Classes
+
+- New in Drupal 11.1.0!
+- Procedural hooks are being replaced by an OOP approach.
+- Not all hooks are being replaced. For example:
+  - `hook_install()` `hook_update_N()`
+  - `hook_preprocess_HOOK()`
+- Built using services.
+- See https://www.drupal.org/node/3442349
+
+<!--
+This isn't a rug pull. All your normal hooks will work for the time being.
+-->
+---
+
+## Hook Service Classes
+
+- Define the service to put our hooks in.
+
+```yml
+services:
+  services_hooks_example.node_hooks:
+    class: \Drupal\services_hooks_example\Hook\NodeHooks
+    autowire: true
+```
+
+---
+<!-- _footer: "" -->
+## Hook Service Classes
+
+- Define our hooks using PHP attributes.
+
+```php
+namespace Drupal\services_hooks_example\Hook;
+
+use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\node\NodeInterface;
+
+class NodeHooks {
+  /**
+   * Implements hook_ENTITY_TYPE_insert() for node entities.
+   */
+  #[Hook('node_insert')]
+  public function nodeInsert(NodeInterface $node) {
+    // Act on the hook being triggered.
+  }
+}
+```
+--- 
+
+## Hook Service Classes
+
+- For the time being, you are encouraged to add a shim procedural hook in the usual place.
+
+```php
+use Drupal\node\NodeInterface;
+
+#[LegacyHook]
+function mymodule_node_insert(NodeInterface $node) {
+  \Drupal::service('services_hooks_example.node_hooks')->nodeInsert($NodeInterface $node);
+}
+```
+<!--
+There doesn't appear to be any word on deprications of procedural hooks.
+In fact many theme and install hooks will remain.
+The aim is to allow low level hooks that have no dependencies to operate as they always have.
+-->
+---
+
+# Tagged Services
+
+---
+
+## Tagged Services
+
+- Some services can be tagged.
+- This gives them special abilities.
+- Listening to events, controlling access, set up caching, etc. 
+
+---
+
+## Tagged Services - Events
+
+- The simplest tagged service is the event handler.
+- This service will be triggered when .
+
+```yml
+services:
+  eventsubscriber_example.eventlistner_service:
+    class: \Drupal\eventsubscriber_example\EventSubscriber\EventListenerService
+    tags:
+      - { name: event_subscriber }
+```
+
+---
+
+## Tagged Services - Events
+
+```php
+namespace Drupal\eventsubscriber_example\EventSubscriber;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+
+class EventListenerService implements EventSubscriberInterface {
+
+  public function onRequest(RequestEvent $event) {
+    // Runs when a request is made.
+  }
+
+  public static function getSubscribedEvents(): array {
+    return [KernelEvents::REQUEST => [['onRequest', 1]]];
+  }
+}
+
+```
+
+---
+<!-- _footer: "" -->
+## Tagged Services - Autoconfigure
+
+- Use the `autoconfigure: true` directive to automatically tag classes that implement the `Symfony\Component\EventDispatcher\EventSubscriberInterface` interface
+
+```yml
+services:
+  _defaults:
+    autoconfigure: true
+  services_autoconfigure_example.autoconfigured_service:
+    class: \Drupal\services_autoconfigure_example\EventSubscriber\AutoconfiguredService
+```
+
+---
+
+# Tips For Creating Services
+
+---
+
 <!-- _footer: "" -->
 ## Tips For Creating Services
 
-- Don't use `\Drupal::sercices()` inside your service classes, use depedency injection instead.
-- Use <strong>SOLID</strong> principles. Create small service classes that perform one task.
-- Keep constructors as simple as possible. Just assign your dependencies to properties.
+- Don't use `\Drupal::services()` inside your service classes, use depedency injection instead.
+* Use <strong>SOLID</strong> principles. Create small service classes that perform one task.
+* Don't have services with lots of arguments. This tends to show that the service is doing too much.
+* Keep constructors as simple as possible. Just assign your dependencies to properties.
+ 
+---
+## Tips For Creating Services
+
 - Don't "hand off" dependencies to internal classes, use additional services.
+* Consider not creating a service if the class has no dependencies.
+* If you need to alter the class at runtime then make the service to allow Drupal to do that.
 
 ---
 
@@ -584,7 +764,7 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 ## Altering Services
 
 - All services can be modified to change their funcitonality.
-- This can be done in two ways, depending on your needs.
+- This can be done in two ways, depending on your needs:
   - Decorating
   - Altering
 
@@ -592,25 +772,49 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 
 ## Altering Services: Decorating
 
-- Services can be decorated to create your own serive that extends another service.
+- Services can be decorated to create your own service that extends another service.
 - The original service will still exist, but you will have a new service that accepts the same arguments.
 
 ```yml
 services:
-  services_decorator_example.decorated_json:
-    class: \Drupal\services_decorator_example\DecoratedJson
-    decorates: serialization.json
+  services_decorator_example.decorated_password_generator:
+    class: \Drupal\services_decorator_example\DecoratedPasswordGenerator
+    decorates: password_generator
 ```
 <!--
 Here, we are decorating the serialization.json and creating our own service called services_decorator_example.decorated_json.
 The critical thing is that the existing service class still exists. The new service just extends that.
 -->
+
+---
+<!-- _footer: "" -->
+## Altering Services: Decorating
+
+- We just extend the original class.
+
+```php
+<?php
+
+namespace Drupal\services_decorator_example;
+
+use Drupal\Core\Password\DefaultPasswordGenerator;
+
+/**
+ * Decorates the Json class.
+ */
+class DecoratedPasswordGenerator extends DefaultPasswordGenerator {
+
+  protected $allowedChars = 'abcdefghijkmnopqrstuvwxyz';
+
+}
+
+```
+
 ---
 <!-- _footer: "" -->
 ## Altering Services: Altering
 
 - Override the serivce completely and replace it with your own.
-
 - Create a class that has the name `[ModuleName]ServiceProvider`, which extends the class `\Drupal\Core\DependencyInjection\ServiceProviderBase`.
 - Drupal will pick up this class and run the `register()` and `alter()` methods.
 
@@ -655,13 +859,13 @@ Here, we are altering the joke_api.joke service to replace it with our a stub se
 
 There's much more to Drupal services, try looking up
 
-
-- `autoconfigure: true`
 - Tagged services
-- Access control
+  - Event handlers
+  - Access control
 - Logging
-- Event handlers
-
+- Lazy
+- Public
+- alias
 ---
 <!-- _footer: "" -->
 ## Resources

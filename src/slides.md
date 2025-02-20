@@ -76,7 +76,7 @@ This talk will assume you have some understanding of PHP and OOP, but if you get
 - They are an essential part of Drupal.
 - If you are going to build or maintain a module then you will use services.
 - I quite like back to basics talks.
-- Coming soon are service hooks, meaning that we will soon lose hooks and need to use services instead.
+- Coming soon are service hooks. We will soon lose some hooks and need to use service based hooks instead.
 -->
 
 ---
@@ -85,43 +85,31 @@ This talk will assume you have some understanding of PHP and OOP, but if you get
 
 - Used in all parts of Drupal and many modules.
 * Built on the <strong>Symfony Service Container</strong> system.
+
 * A service describes an object in Drupal.
+
 * Dependency injection is used to inject services into other services.
-* Forms, controllers, and plugins have services built in.
+
 * Simple to use and powerful.
 
----
-
-```php
-\Drupal::service('thing');
-```
-
----
-
-## What Services Exist?
-
-- Lots!
-
-```bash
-drush eval "print_r(\Drupal::getContainer()->getServiceIds());"
-```
-
-- Prints a list of over 600 services.
-- Most are in the form `date.formatter`.
-- Some are in the form `Drupal\Core\Datetime\DateFormatterInterface`, and are used in autoloading.
-
-<!--
-The simple version of date.formatter is what is normal in Drupal.
-The interface form is used for autoloading.
--->
 ---
 
 # Using A Service
 
 ---
+
 ## Using A Service
 
-- Grab the service.
+- Services can be accessed via the Drupal object.
+
+```php
+$serviceObject = \Drupal::service('thing');
+```
+
+---
+## Using A Service
+
+- To use a service, pick the service you need.
 - Use it.
 
 ```php
@@ -143,11 +131,30 @@ $normalPath = \Drupal::service('path_alias.manager')->getPathByAlias('somepath')
 
 ---
 
+## What Services Exist?
+
+- There are lots!
+
+```bash
+drush eval "print_r(\Drupal::getContainer()->getServiceIds());"
+```
+
+- Prints a list of over 600 services in Drupal core.
+- Most are in the form `date.formatter`.
+- Some are in the form `Drupal\Core\Datetime\DateFormatterInterface`, and are used in autoloading.
+
+<!--
+The simple version of date.formatter is what is normal in Drupal.
+The interface form is used for autoloading.
+-->
+---
+
 ## Using A Service
 
 - However! Most of the time you don't want to be using `\Drupal::service()`.
-- Drupal will inject the services you need into your service.
-- This is called <strong>dependency injection</strong>.
+* Unless you are running code in a hook you should be injecting services into your own code.
+* Drupal will handle what services are needed to create your needed service.
+* This is called <strong>dependency injection</strong>.
 
 ---
 
@@ -161,9 +168,6 @@ A quick introduction.
 
 Dependecy injection sounds complicated, but its just the practice of <strong>injecting the things the object needs</strong>, instead of <strong>baking them into the class</strong>.
 
-<!--
-Some OOP wording here. Make sure this is clear.
--->
 ---
 
 ## Dependency Injection
@@ -179,6 +183,7 @@ class Page {
 }
 $page = new Page();
 ```
+
 - What happens if you want to change the credentials? Or change the database itself?
 - You would need to edit the class. 
 <!--
@@ -205,20 +210,22 @@ $page = new Page($database);
 Dependency Inversion principle.
 -->
 ---
+
 ## Dependency Injection
-- Drupal handles all the dependency creation.
-- It will create services with all of the required objects in place.
+
+- Drupal handles all the dependency creation automatically.
+- It will create services with all of the required objects.
 - All we need to do is ask for our service.
+
 ---
 
 ## Why Use Dependency Injection In Drupal?
 
-Let's try to create the `path_alias.manager` service to translate a path <em>without</em> using Drupal's dependency injection system.
+Let's try to create the `path_alias.manager` service to translate a path <em>without</em> using Drupal's automatic dependency injection system.
 
 ---
 
 The `path_alias.manager` service wraps the `\Drupal\path_alias\AliasManager` class.
-
 
 ```php
 use Drupal\path_alias\AliasManager;
@@ -302,7 +309,7 @@ use Drupal\Core\Database\Database;
 $connection = Database::getConnection();
 $pathAliasRepository = new AliasRepository($connection);
 
-$cid = 'path_alias_whitelist';
+$cid = 'path_alias_prefix_list';
 $pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
 
 $aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
@@ -322,7 +329,7 @@ use Drupal\Core\Site\Settings;
 $connection = Database::getConnection();
 $pathAliasRepository = new AliasRepository($connection);
 
-$cid = 'path_alias_whitelist';
+$cid = 'path_alias_prefix_list';
 
 $settings = Settings::getInstance();
 $default_bin_backends = ['bootstrap' => 'cache.backend.chainedfast'];
@@ -335,7 +342,6 @@ $aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
 $languageManager, $cache, $time);
 ```
 <!--
-The `$cache` property is an object of type `\Drupal\Core\Cache\CacheFactoryInterface`, so we can use `\Drupal\Core\Cache\CacheFactory` to create this. We first need to create a `\Drupal\Core\Site\Settings` object to create that.
 
 We have now made several assumptions about our settings, the type of cache we will use, where the cache bin is stored.
 This has created very brittle code that is prone to breakage.
@@ -366,7 +372,7 @@ Seems easier, right?
 
 ## Creating Services
 
-- All services are defined in a `[module].services.yml` file in your module directory.
+- Custom services are defined in a `[module].services.yml` file in your module directory.
 
 ```yml
 services:
@@ -524,15 +530,17 @@ services:
 - Create your class as normal. The interfaces you nominate will be translated into services and automatically injected into your constructor.
 
 ```php
-<?php
-
 namespace Drupal\services_autowire_example;
 
-use Drupal\Component\Serialization\SerializationInterface;
+use Drupal\Core\Password\PasswordGeneratorInterface;
 
 class AutowireExample implements AutowireExampleInterface {
 
-  public function __construct(protected SerializationInterface $serializer) {
+  public function __construct(protected PasswordGeneratorInterface $passwordGenerator) {
+  }
+
+  public function generate12CharacterPassword():string {
+    return $this->passwordGenerator->generate(12);
   }
 }
 ```
@@ -546,7 +554,7 @@ class AutowireExample implements AutowireExampleInterface {
 ## Controllers And Forms
 
 - Some types of Drupal object (especially Controllers and Forms) don't use `*.services.yml` files.
-* Instead they implement 
+- Instead they implement 
 ```
 \Drupal\Core\DependencyInjection\ContainerInjectionInterface
 ```
@@ -562,18 +570,20 @@ class AutowireExample implements AutowireExampleInterface {
 ```php
 class ControllerExample extends ControllerBase {
 
-  protected $dateFormatter;
+  protected $passwordGenerator;
 
   public static function create(ContainerInterface $container) {
     $instance = new static();
-    $instance->dateFormatter = $container->get('date.formatter');
+    $instance->passwordGenerator = $container->get('password_generator');
     return $instance;
   }
 
   /// .. 
 }
 ```
-
+<!--
+The static() here is a reference to the current class. This calls the constructor but you probably don't need to define the controller.
+-->
 ---
 ## Plugins
 
@@ -586,6 +596,23 @@ class ControllerExample extends ControllerBase {
 <!--
 Plugins work in the same way, but plugins will have additional arguments that need to be passed upstream. 
 -->
+---
+
+## Plugins
+
+- The plugin controller does have a function in this instance.
+
+```php
+  public static function create(ContainerInterface $container, 
+    array $configuration,
+    $plugin_id,
+    $plugin_definition
+  ) {  
+    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance->passwordGenerator = $container->get('password_generator');
+    return $instance;
+  }
+```
 
 ---
 
@@ -606,6 +633,7 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 <!--
 This isn't a rug pull. All your normal hooks will work for the time being.
 -->
+
 ---
 
 ## Hook Service Classes
@@ -677,7 +705,7 @@ The aim is to allow low level hooks that have no dependencies to operate as they
 ## Tagged Services - Events
 
 - The simplest tagged service is the event handler.
-- This service will be triggered when .
+- This service will be triggered when events happen.
 
 ```yml
 services:
@@ -715,7 +743,7 @@ class EventListenerService implements EventSubscriberInterface {
 <!-- _footer: "" -->
 ## Tagged Services - Autoconfigure
 
-- Use the `autoconfigure: true` directive to automatically tag classes that implement the `Symfony\Component\EventDispatcher\EventSubscriberInterface` interface
+- Use the `autoconfigure: true` directive to automatically tag classes. 
 
 ```yml
 services:
@@ -724,6 +752,7 @@ services:
   services_autoconfigure_example.autoconfigured_service:
     class: \Drupal\services_autoconfigure_example\EventSubscriber\AutoconfiguredService
 ```
+- For events, Drupal looks for services that extend <p class="small-text">\Symfony\Component\EventDispatcher\EventSubscriberInterface</p>
 
 ---
 
@@ -744,7 +773,7 @@ services:
 
 - Don't "hand off" dependencies to internal classes, use additional services.
 * Consider not creating a service if the class has no dependencies.
-* If you need to alter the class at runtime then make the service to allow Drupal to do that.
+* If you need to alter the class at runtime then make a service to allow Drupal to do that.
 
 ---
 
@@ -782,7 +811,7 @@ services:
     decorates: password_generator
 ```
 <!--
-Here, we are decorating the serialization.json and creating our own service called services_decorator_example.decorated_json.
+Here, we are decorating the password_generator and creating our own service called services_decorator_example.decorated_password_generator.
 The critical thing is that the existing service class still exists. The new service just extends that.
 -->
 
@@ -800,7 +829,7 @@ namespace Drupal\services_decorator_example;
 use Drupal\Core\Password\DefaultPasswordGenerator;
 
 /**
- * Decorates the Json class.
+ * Decorates the DefaultPasswordGenerator class.
  */
 class DecoratedPasswordGenerator extends DefaultPasswordGenerator {
 
@@ -815,11 +844,11 @@ class DecoratedPasswordGenerator extends DefaultPasswordGenerator {
 ## Altering Services: Altering
 
 - Override the serivce completely and replace it with your own.
-- Create a class that has the name `[ModuleName]ServiceProvider`, which extends the class `\Drupal\Core\DependencyInjection\ServiceProviderBase`.
-- Drupal will pick up this class and run the `register()` and `alter()` methods.
+* Create a class that has the name `[ModuleName]ServiceProvider`, which extends the class <p class="small-text">\Drupal\Core\DependencyInjection\ServiceProviderBase</p>
+* Drupal will pick up this class and run the `register()` and `alter()` methods.
 
 <!-- 
-Use register() to register a new service in Drupal. Useful for highly dynamic services where you want to automatically discover your services at run time.
+Use register() to register a new service in Drupal. Useful for highly dynamic services where you want to automatically create your services at run time.
 
 Use alter() to alter the service registry and change any registered service in the site.
 -->
@@ -859,13 +888,11 @@ Here, we are altering the joke_api.joke service to replace it with our a stub se
 
 There's much more to Drupal services, try looking up
 
-- Tagged services
-  - Event handlers
-  - Access control
-- Logging
-- Lazy
-- Public
-- alias
+- Access control services
+- Factories
+- Lazy services
+- Public and private services
+- Service aliases
 ---
 <!-- _footer: "" -->
 ## Resources

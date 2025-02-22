@@ -879,8 +879,9 @@ Here, we are altering the joke_api.joke service to replace it with our a stub se
 -->
 
 ---
+<!-- _footer: "" -->
 
-# Demo!
+[![width:1100px Joke API Stub](../src/assets/images/joke_api_video.png)](https://www.youtube.com/watch?v=SBrF96uM0Z8 "Joke API Stub")
 
 ---
 

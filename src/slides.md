@@ -45,10 +45,10 @@ marp: true
 <!-- _footer: "" -->
 ## Source Code
 - Talk is available at:
-<small>https://github.com/hashbangcode/drupal-services-talk</small> 
-- All code seen can be found at:
-<small>[https://github.com/hashbangcode/drupal_services_example](https://github.com/hashbangcode/drupal_services_example)</small>
-- I have also written about Drupal services on <small>[www.hashbangcode.com](www.hashbangcode.com)</small>
+<small>https://github.com/hashbangcode/drupal-services-talk</small> or via QR code.
+- All code seen can be found at
+<small>[https://bit.ly/4h089yN](https://github.com/hashbangcode/drupal_services_example)</small>
+- <small>[www.hashbangcode.com](https://www.hashbangcode.com)</small>
 
 ![bg h:50% right:40%](../src/assets/images/qr_slides.png)
 
@@ -84,11 +84,12 @@ This talk will assume you have some understanding of PHP and OOP, but if you get
 ## What Is A Service?
 
 - Used in all parts of Drupal and many modules.
+
 * Built on the <strong>Symfony Service Container</strong> system.
 
 * A service describes an object in Drupal.
 
-* Dependency injection is used to inject services into other services.
+* <strong>Dependency injection</strong> is used to inject services into other services.
 
 * Simple to use and powerful.
 
@@ -143,15 +144,11 @@ drush eval "print_r(\Drupal::getContainer()->getServiceIds());"
 - Most are in the form `date.formatter`.
 - Some are in the form `Drupal\Core\Datetime\DateFormatterInterface`, and are used in autoloading.
 
-<!--
-The simple version of date.formatter is what is normal in Drupal.
-The interface form is used for autoloading.
--->
 ---
 
 ## Using A Service
 
-- However! Most of the time you don't want to be using `\Drupal::service()`.
+- Most of the time you don't want to be using `\Drupal::service()`.
 * Unless you are running code in a hook you should be injecting services into your own code.
 * Drupal will handle what services are needed to create your needed service.
 * This is called <strong>dependency injection</strong>.
@@ -177,15 +174,15 @@ Dependecy injection sounds complicated, but its just the practice of <strong>inj
 ```php
 class Page {
   protected $database;
-  public function __construct() {
-    $this->database = new PDO('mysql:host=localhost;dbname=test', 'username', 'password');
+  public function __construct($dbname, $username, $password) {
+    $this->database = new PDO('mysql:host=localhost;dbname='. $dbname, $username, $password);
   }
 }
-$page = new Page();
+$page = new Page('test', 'username', 'password');
 ```
 
 - What happens if you want to change the credentials? Or change the database itself?
-- You would need to edit the class. 
+- You would need to edit the class or the creation code.
 <!--
 Think SOLID principles.
 -->
@@ -203,166 +200,12 @@ class Page {
     $this->database = $database;
   }
 }
-$database = new MysqlDatabase();
+$database = new MysqlDatabase($dbname, $username, $password);
 $page = new Page($database);
 ```
 <!--
 Dependency Inversion principle.
 -->
----
-
-## Dependency Injection
-
-- Drupal handles all the dependency creation automatically.
-- It will create services with all of the required objects.
-- All we need to do is ask for our service.
-
----
-
-## Why Use Dependency Injection In Drupal?
-
-Let's try to create the `path_alias.manager` service to translate a path <em>without</em> using Drupal's automatic dependency injection system.
-
----
-
-The `path_alias.manager` service wraps the `\Drupal\path_alias\AliasManager` class.
-
-```php
-use Drupal\path_alias\AliasManager;
-
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
-$languageManager, $cache, $time);
-```
-
-<!-- 
-We need to fill in the missing dependencies of `$pathAliasRepository`, `$pathPrefixes`, `$languageManager`, `$cache`, and `$time`.
-
-Let's start with `$pathAliasRepository`.
--->
----
-
-The `$pathAliasRepository` property is an instance of `\Drupal\path_alias\AliasRepository`.
-
-```php
-use Drupal\path_alias\AliasManager;
-use Drupal\path_alias\AliasRepository;
-
-$pathAliasRepository = new AliasRepository($connection);
-
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, 
-$languageManager, $cache, $time);
-```
-
-The `AliasRepository` class takes a property of `$connection`.
-
----
-
-The `$connection` property is a connection to the database, which we can create using the `\Drupal\Core\Database\Database` class.
-
-```php
-use Drupal\path_alias\AliasManager;
-use Drupal\path_alias\AliasRepository;
-use Drupal\Core\Database\Database;
-
-$connection = Database::getConnection();
-$pathAliasRepository = new AliasRepository($connection);
-
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes, 
-$languageManager, $cache, $time);
-```
-
-Next, let's look at `$pathPrefixes`.
-
----
-
-The `$pathPrefixes` property is an instance of `AliasPrefixList`, which has more dependencies.
-
-```php
-use Drupal\path_alias\AliasManager;
-use Drupal\path_alias\AliasPrefixList;
-use Drupal\path_alias\AliasRepository;
-use Drupal\Core\Database\Database;
-
-$connection = Database::getConnection();
-$pathAliasRepository = new AliasRepository($connection);
-
-$pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
-
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
-$languageManager, $cache, $time);
-```
-<!--
-We have made a decision here about where the data will come from.
-We are assuming that all the paths are stored in our local database.
-Which is an ok assumption to make, but this is how hard coded.
--->
----
-
-The `$cid` property of `AliasPrefixList` is just a string.
-
-```php
-use Drupal\path_alias\AliasManager;
-use Drupal\path_alias\AliasPrefixList;
-use Drupal\path_alias\AliasRepository;
-use Drupal\Core\Database\Database;
-
-$connection = Database::getConnection();
-$pathAliasRepository = new AliasRepository($connection);
-
-$cid = 'path_alias_prefix_list';
-$pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
-
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
-$languageManager, $cache, $time);
-```
-
----
-<!-- _footer: "" -->
-
-```php
-use Drupal\path_alias\AliasManager;
-use Drupal\path_alias\AliasPrefixList;
-use Drupal\path_alias\AliasRepository;
-use Drupal\Core\Database\Database;
-use Drupal\Core\Site\Settings;
-
-$connection = Database::getConnection();
-$pathAliasRepository = new AliasRepository($connection);
-
-$cid = 'path_alias_prefix_list';
-
-$settings = Settings::getInstance();
-$default_bin_backends = ['bootstrap' => 'cache.backend.chainedfast'];
-$cacheFactory = new CacheFactory($settings, $default_bin_backends);
-$cache = $cacheFactory->get('bootstrap');
-
-$pathPrefixes = new AliasPrefixList($cid, $cache, $lock, $state, $alias_repository);
-
-$aliasManager = new AliasManager($pathAliasRepository, $pathPrefixes,
-$languageManager, $cache, $time);
-```
-<!--
-
-We have now made several assumptions about our settings, the type of cache we will use, where the cache bin is stored.
-This has created very brittle code that is prone to breakage.
-Also, we still have another 3 properties to do just to get AliasPrefixList created! All of which will need objects creating, and some of those objects will have more objects, some of which might need extra stuff adding.
-Then, there's more properties we need to load for AliasManager!
-We are only half way through creating objects.
-
-Worse, every time you want to transform a path you'll need to copy this entire block of code.
--->
----
-
-Anyone else lost? ...  :/
-
----
-
-```php
-$pathManager = \Drupal::service('path_alias.manager');
-$normalPath = $pathManager->getPathByAlias('somepath');
-```
-
-Seems easier, right?
 
 ---
 
@@ -430,7 +273,7 @@ We are injecting the service to generate passwords.
 
 - Your services can accept a number of arguments.
 
-  - `@` for another service (`@config.factory`).
+  - `@` for another service (`@password_generator`).
   - `%` for a parameter (`%site.path%`).
   - 'config' = A string, in this case ‘config’.
 
@@ -450,7 +293,7 @@ Strings are used to pass static properties to factories to generate different ty
 
 namespace Drupal\services_argument_example;
 
-use Drupal\Component\Serialization\SerializationInterface;
+use Drupal\Core\Password\PasswordGeneratorInterface;
 
 class SingleArgument implements SingleArgumentInterface {
 
@@ -479,6 +322,16 @@ class SingleArgument implements SingleArgumentInterface {
     return $this->passwordGenerator->generate(12);
   }
 }
+```
+---
+
+## Creating Services - Arguments
+
+- You can now use your service.
+
+```php
+$singleArgument = \Drupal::service('services_argument_example.single_argument');
+$password = $singleArgument->generate12CharacterPassword();
 ```
 
 ---
@@ -614,6 +467,10 @@ Plugins work in the same way, but plugins will have additional arguments that ne
   }
 ```
 
+<!--
+This technique comes in useful when making blocks, creating views plugsin, migration plugins and so on.
+-->
+
 ---
 
 # Hook Service Classes
@@ -624,14 +481,14 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 
 - New in Drupal 11.1.0!
 - Procedural hooks are being replaced by an OOP approach.
+- Built using services.
 - Not all hooks are being replaced. For example:
   - `hook_install()` `hook_update_N()`
   - `hook_preprocess_HOOK()`
-- Built using services.
 - See https://www.drupal.org/node/3442349
 
 <!--
-This isn't a rug pull. All your normal hooks will work for the time being.
+This isn't a rug pull. All your normal hooks will work for the time being (we'll come onto that).
 -->
 
 ---
@@ -680,7 +537,7 @@ use Drupal\node\NodeInterface;
 
 #[LegacyHook]
 function mymodule_node_insert(NodeInterface $node) {
-  \Drupal::service('services_hooks_example.node_hooks')->nodeInsert($NodeInterface $node);
+  \Drupal::service('services_hooks_example.node_hooks')->nodeInsert($node);
 }
 ```
 <!--
@@ -688,6 +545,17 @@ There doesn't appear to be any word on deprications of procedural hooks.
 In fact many theme and install hooks will remain.
 The aim is to allow low level hooks that have no dependencies to operate as they always have.
 -->
+---
+
+## Hook Service Classes
+
+- If you have no legacy hooks then you can improve performance by setting this parameter in your *.services.yml file.
+
+```yml
+parameters:
+  module_name.hooks_converted: true
+```
+
 ---
 
 # Tagged Services
@@ -716,6 +584,7 @@ services:
 ```
 
 ---
+<!-- _footer: "" -->
 
 ## Tagged Services - Events
 
@@ -736,7 +605,6 @@ class EventListenerService implements EventSubscriberInterface {
     return [KernelEvents::REQUEST => [['onRequest', 1]]];
   }
 }
-
 ```
 
 ---
@@ -780,9 +648,9 @@ services:
 ## Tips For Creating Services
 
 - Services make unit testing much easier.
-  - Test your services on their own with unit testing.
-  - Then move up to functional testing for test services working together.
-  - Functional tests can test your module controllers, forms, drush commands etc.
+  - Test your services on their own with <strong>unit testing</strong>.
+  - Then move up to <strong>functional testing</strong> for testing services working together.
+  - <strong>Functional tests</strong> can test your module controllers, forms, drush commands etc.
 
 ---
 
@@ -853,14 +721,66 @@ Use register() to register a new service in Drupal. Useful for highly dynamic se
 Use alter() to alter the service registry and change any registered service in the site.
 -->
 ---
+
+## Altering Services: Altering
+
+- Altering services is especially powerful when integrating with an external API.
+* You can stub or mock the external API so that you can run tests using a known subset of data.
+* Also useful if you API restricted and not everyone has access to it.
+
+---
+
+## Altering Services: Altering
+
+- The Joke API (https://sv443.net/jokeapi/v2/) is a free API that returns Jokes.
+- Joke API service wraps the API so we can call it.
+
+```yml
+services:
+  joke_api.joke:
+    class: Drupal\joke_api\JokeApi
+    autowire: true
+```
+---
+<!-- _footer: "" -->
+
+## Altering Services: Altering
+
+- The `joke_api.joke` service calls the API and returns a joke.
+
+ ```php
+namespace Drupal\joke_api;
+
+use GuzzleHttp\Client;
+
+class JokeApi implements JokeApiInterface {
+
+  protected $url = 'https://v2.jokeapi.dev/joke/';
+
+  public function __construct(protected ClientInterface $httpClient) {}
+
+  public function getJoke() {
+    $request = $this->httpClient->request('GET', $url);
+    return json_decode($request->getBody()->getContents());
+  }
+}
+```
+
+---
+
+## Altering Services: Altering
+
+- To alter this service we need to create a module called joke_api_stub.
+- We then add a class called `JokeApiStubServiceProvider` that extends `ServiceProviderBase`.
+
+---
+
 <!-- _footer: "" -->
 ## Altering Services: Altering
 
 - The `alter()` method is can be used to alter an existing service.
 
 ```php
-<?php
-
 namespace Drupal\joke_api_stub;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
@@ -881,7 +801,44 @@ Here, we are altering the joke_api.joke service to replace it with our a stub se
 ---
 <!-- _footer: "" -->
 
-[![width:1100px Joke API Stub](../src/assets/images/joke_api_video.png)](https://www.youtube.com/watch?v=Iisa-3LYsvk "Joke API Stub")
+## Altering Services: Altering
+
+```php
+namespace Drupal\joke_api_stub;
+
+use Drupal\joke_api\JokeApi;
+
+class JokeApiStub extends JokeApi {
+
+  public function getJoke() {
+    $data = '{
+    "error": false,
+    "category": "Programming",
+    "type": "twopart",
+    "setup": "A web developer walks into a restaurant.",
+    "delivery": "He immediately leaves in disgust as the restaurant was laid out in tables.",
+    "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+    },
+    "id": 6,
+    "safe": true,
+    "lang": "en"
+    }';
+    return json_decode($data);
+  }
+}
+```
+
+---
+<!-- _footer: "" -->
+
+<a href="https://www.youtube.com/watch?v=Iisa-3LYsvk" target="_blank">![width:1100px Joke API Stub](../src/assets/images/joke_api_video.png)]</a>
+
 
 ---
 
@@ -898,13 +855,17 @@ There's much more to Drupal services, try looking up
 <!-- _footer: "" -->
 ## Resources
 
-- Services and DI on `#! code` <small>https://www.hashbangcode.com/tag/dependency-injection</small>
+- Services and DI on `#! code` <small>[www.hashbangcode.com/tag/dependency-injection](https://www.hashbangcode.com/tag/dependency-injection)</small>
 - Custom code seen is code available at <small>https://github.com/hashbangcode/drupal_services_example</small>
+- Joke API available at <small>https://github.com/hashbangcode/joke_api</small>
+<!--
+- These links are on the repo page for the talk. https://github.com/hashbangcode/drupal-services-talk.
+-->
+---
+## Resources
 - Services and Dependency Injection - <small>https://www.drupalatyourfingertips.com/services</small>
 - Structure of a service file https://www.drupal.org/docs/drupal-apis/services-and-dependency-injection/structure-of-a-service-file
-<!--
-- See the list at the repo page https://github.com/hashbangcode/drupal-services-talk.
--->
+
 ---
 
 ## Questions?

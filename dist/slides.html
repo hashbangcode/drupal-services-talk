@@ -235,7 +235,7 @@ p.centre {
 <h1 id="why-talk-about-services">Why Talk About Services?</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-marpit-fragments="4" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-marpit-fragments="5" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -275,6 +275,9 @@ p.centre {
 <p><strong>Dependency injection</strong> is used to inject services into other services.</p>
 </li>
 <li data-marpit-fragment="4">
+<p>Sercices make unit testing much easier.</p>
+</li>
+<li data-marpit-fragment="5">
 <p>Simple to use and powerful.</p>
 </li>
 </ul>
@@ -434,20 +437,10 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="what-services-exist">What Services Exist?</h2>
-<ul>
-<li>There are lots!</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">drush <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;print_r(\Drupal::getContainer()-&gt;getServiceIds());&quot;</span>
-</code></pre>
-<ul>
-<li>Prints a list of over 600 services in Drupal core.</li>
-<li>Most are in the form <code>date.formatter</code>.</li>
-<li>Some are in the form <code>Drupal\Core\Datetime\DateFormatterInterface</code>, and are used in autoloading.</li>
-</ul>
+<h1 id="what-services-exist">What Services Exist?</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-marpit-fragments="3" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -472,18 +465,20 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="using-a-service-4">Using A Service</h2>
+<h2 id="what-services-exist-1">What Services Exist?</h2>
 <ul>
-<li>Most of the time you don't want to be using <code>\Drupal::service()</code>.</li>
+<li>There are lots!</li>
 </ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">drush <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;print_r(\Drupal::getContainer()-&gt;getServiceIds());&quot;</span>
+</code></pre>
 <ul>
-<li data-marpit-fragment="1">Unless you are running code in a hook you should be injecting services into your own code.</li>
-<li data-marpit-fragment="2">Drupal will handle what services are needed to create your needed service.</li>
-<li data-marpit-fragment="3">This is called <strong>dependency injection</strong>.</li>
+<li>Prints a list of over 600 services in Drupal core.</li>
+<li>Most are in the form <code>date.formatter</code>.</li>
+<li>Some are in the form <code>Drupal\Core\Datetime\DateFormatterInterface</code>, and are used in autoloading.</li>
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-marpit-fragments="3" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -508,8 +503,15 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="dependecny-injection">Dependecny Injection</h1>
-<p>A quick introduction.</p>
+<h2 id="using-a-service-4">Using A Service</h2>
+<ul>
+<li>Most of the time you don't want to be using <code>\Drupal::service()</code>.</li>
+</ul>
+<ul>
+<li data-marpit-fragment="1">Unless you are running code in a hook you should be injecting services into your own code.</li>
+<li data-marpit-fragment="2">Drupal will handle what services are needed to create your needed service.</li>
+<li data-marpit-fragment="3">This is called <strong>dependency injection</strong>.</li>
+</ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -537,8 +539,8 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="dependency-injection">Dependency Injection</h2>
-<p>Dependecy injection sounds complicated, but its just the practice of <strong>injecting the things the object needs</strong>, instead of <strong>baking them into the class</strong>.</p>
+<h1 id="dependecny-injection">Dependecny Injection</h1>
+<p>A quick introduction.</p>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -554,6 +556,35 @@ p.centre {
   list-style-type: none
 }
 " lang="C" class="lead invert" data-marpit-pagination="15" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+;" data-marpit-pagination-total="66" data-size="16:9">
+<h2 id="dependency-injection">Dependency Injection</h2>
+<p>Dependecy injection sounds complicated, but its just the practice of <strong>injecting the things the object needs</strong>, instead of <strong>baking them into the class</strong>.</p>
+<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+" lang="C" class="lead invert" data-marpit-pagination="16" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -584,7 +615,7 @@ p.centre {
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -596,7 +627,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="16" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="17" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -624,34 +655,6 @@ p.centre {
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-" lang="C" class="lead invert" data-marpit-pagination="17" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="creating-your-own-services">Creating Your Own Services</h1>
-<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
-</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
@@ -677,14 +680,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services">Creating Services</h2>
-<ul>
-<li>Custom services are defined in a <code>[module].services.yml</code> file in your module directory.</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">services_simple_example.simple_service:</span>
-    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_simple_example\SimpleService</span>
-</code></pre>
+<h1 id="creating-your-own-services">Creating Your Own Services</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -700,6 +696,41 @@ p.centre {
   list-style-type: none
 }
 " lang="C" class="lead invert" data-marpit-pagination="19" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+;" data-marpit-pagination-total="66" data-size="16:9">
+<h2 id="creating-services">Creating Services</h2>
+<ul>
+<li>Custom services are defined in a <code>[module].services.yml</code> file in your module directory.</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">services_simple_example.simple_service:</span>
+    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_simple_example\SimpleService</span>
+</code></pre>
+<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+" lang="C" class="lead invert" data-marpit-pagination="20" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -729,40 +760,6 @@ p.centre {
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-" lang="C" class="lead invert" data-marpit-pagination="20" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services-2">Creating Services</h2>
-<ul>
-<li>You can now use your service like any Drupal service.</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-variable">$simpleService</span> = <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_simple_example.simple_service&#x27;</span>);
-<span class="hljs-variable">$array</span> = <span class="hljs-variable">$simpleService</span>-&gt;<span class="hljs-title function_ invoke__">getArray</span>();
-</code></pre>
-<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
-</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
@@ -788,14 +785,12 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services---arguments">Creating Services - Arguments</h2>
+<h2 id="creating-services-2">Creating Services</h2>
 <ul>
-<li>Most commonly, we want to inject our service dependencies.</li>
+<li>You can now use your service like any Drupal service.</li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">services_argument_example.single_argument:</span>
-    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_argument_example\SingleArgument</span>
-    <span class="hljs-attr">arguments:</span> [<span class="hljs-string">&#x27;@password_generator&#x27;</span>]
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-variable">$simpleService</span> = <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_simple_example.simple_service&#x27;</span>);
+<span class="hljs-variable">$array</span> = <span class="hljs-variable">$simpleService</span>-&gt;<span class="hljs-title function_ invoke__">getArray</span>();
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -824,17 +819,15 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services---arguments-1">Creating Services - Arguments</h2>
+<h2 id="creating-services---arguments">Creating Services - Arguments</h2>
 <ul>
-<li>
-<p>Your services can accept a number of arguments.</p>
-<ul>
-<li><code>@</code> for another service (<code>@password_generator</code>).</li>
-<li><code>%</code> for a parameter (<code>%site.path%</code>).</li>
-<li>'config' = A string, in this case ‘config’.</li>
+<li>Most commonly, we want to inject our service dependencies.</li>
 </ul>
-</li>
-</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">services_argument_example.single_argument:</span>
+    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_argument_example\SingleArgument</span>
+    <span class="hljs-attr">arguments:</span> [<span class="hljs-string">&#x27;@password_generator&#x27;</span>]
+</code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -850,6 +843,44 @@ p.centre {
   list-style-type: none
 }
 " lang="C" class="lead invert" data-marpit-pagination="23" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+;" data-marpit-pagination-total="66" data-size="16:9">
+<h2 id="creating-services---arguments-1">Creating Services - Arguments</h2>
+<ul>
+<li>
+<p>Your services can accept a number of arguments.</p>
+<ul>
+<li><code>@</code> for another service (<code>@password_generator</code>).</li>
+<li><code>%</code> for a parameter (<code>%site.path%</code>).</li>
+<li>'config' = A string, in this case ‘config’.</li>
+</ul>
+</li>
+</ul>
+<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+" lang="C" class="lead invert" data-marpit-pagination="24" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -880,7 +911,7 @@ p.centre {
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -892,7 +923,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="24" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="25" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -921,40 +952,6 @@ p.centre {
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-" lang="C" class="lead invert" data-marpit-pagination="25" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services---arguments-4">Creating Services - Arguments</h2>
-<ul>
-<li>You can now use your service.</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-variable">$singleArgument</span> = <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_argument_example.single_argument&#x27;</span>);
-<span class="hljs-variable">$password</span> = <span class="hljs-variable">$singleArgument</span>-&gt;<span class="hljs-title function_ invoke__">generate12CharacterPassword</span>();
-</code></pre>
-<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
-</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
@@ -980,13 +977,12 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services---autowiring">Creating Services - Autowiring</h2>
+<h2 id="creating-services---arguments-4">Creating Services - Arguments</h2>
 <ul>
-<li>You don't need to add all of your dependencies by hand, you can use autowiring to do this for you.</li>
-<li>Autowiring works by nominating services that correspond to interfaces.</li>
+<li>You can now use your service.</li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-string">Drupal\Core\Password\PasswordGeneratorInterface:</span> <span class="hljs-string">&#x27;@password_generator&#x27;</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-variable">$singleArgument</span> = <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_argument_example.single_argument&#x27;</span>);
+<span class="hljs-variable">$password</span> = <span class="hljs-variable">$singleArgument</span>-&gt;<span class="hljs-title function_ invoke__">generate12CharacterPassword</span>();
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -1015,14 +1011,13 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="creating-services---autowiring-1">Creating Services - Autowiring</h2>
+<h2 id="creating-services---autowiring">Creating Services - Autowiring</h2>
 <ul>
-<li>Then, we need to add the <code>autowire: true</code> directive to the service definition for our service.</li>
+<li>You don't need to add all of your dependencies by hand, you can use autowiring to do this for you.</li>
+<li>Autowiring works by nominating services that correspond to interfaces.</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">services_autowire_example.autowire_example:</span>
-    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_autowire_example\AutowireExample</span>
-    <span class="hljs-attr">autowire:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-string">Drupal\Core\Password\PasswordGeneratorInterface:</span> <span class="hljs-string">&#x27;@password_generator&#x27;</span>
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -1051,6 +1046,42 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
+<h2 id="creating-services---autowiring-1">Creating Services - Autowiring</h2>
+<ul>
+<li>Then, we need to add the <code>autowire: true</code> directive to the service definition for our service.</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">services_autowire_example.autowire_example:</span>
+    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_autowire_example\AutowireExample</span>
+    <span class="hljs-attr">autowire:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+" lang="C" class="lead invert" data-marpit-pagination="29" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+;" data-marpit-pagination-total="66" data-size="16:9">
 <h2 id="creating-services---autowiring-2">Creating Services - Autowiring</h2>
 <ul>
 <li>Alternatively, you can set a default in your service file that all services will be autowired.</li>
@@ -1064,7 +1095,7 @@ p.centre {
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1076,7 +1107,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="29" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="30" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1108,7 +1139,7 @@ p.centre {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1120,7 +1151,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="30" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="31" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1136,7 +1167,7 @@ p.centre {
 <h1 id="controllers-and-forms">Controllers And Forms</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-marpit-fragments="2" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-marpit-fragments="2" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1148,7 +1179,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="31" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="32" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1173,7 +1204,7 @@ p.centre {
 <li data-marpit-fragment="2">The <code>create()</code> method must return an instance of the service object.</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1185,7 +1216,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="32" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="33" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1216,7 +1247,7 @@ p.centre {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1228,7 +1259,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="33" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="34" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1252,7 +1283,7 @@ p.centre {
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1264,7 +1295,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="34" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="35" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1293,34 +1324,6 @@ p.centre {
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-" lang="C" class="lead invert" data-marpit-pagination="35" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="hook-service-classes">Hook Service Classes</h1>
-<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
-</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
@@ -1346,19 +1349,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="hook-service-classes-1">Hook Service Classes</h2>
-<ul>
-<li>New in Drupal 11.1.0!</li>
-<li>Procedural hooks are being replaced by an OOP approach.</li>
-<li>Built using services.</li>
-<li>Not all hooks are being replaced. For example:
-<ul>
-<li><code>hook_install()</code> <code>hook_update_N()</code></li>
-<li><code>hook_preprocess_HOOK()</code></li>
-</ul>
-</li>
-<li>See <a href="https://www.drupal.org/node/3442349">https://www.drupal.org/node/3442349</a></li>
-</ul>
+<h1 id="hook-service-classes">Hook Service Classes</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -1386,18 +1377,22 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="hook-service-classes-2">Hook Service Classes</h2>
+<h2 id="hook-service-classes-1">Hook Service Classes</h2>
 <ul>
-<li>Define the service to put our hooks in.</li>
+<li>New in Drupal 11.1.0!</li>
+<li>Procedural hooks are being replaced by an OOP approach.</li>
+<li>Built using services.</li>
+<li>Not all hooks are being replaced. For example:
+<ul>
+<li><code>hook_install()</code> <code>hook_update_N()</code></li>
+<li><code>hook_preprocess_HOOK()</code></li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">services_hooks_example.node_hooks:</span>
-    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_hooks_example\Hook\NodeHooks</span>
-    <span class="hljs-attr">autowire:</span> <span class="hljs-literal">true</span>
-</code></pre>
+</li>
+<li>See <a href="https://www.drupal.org/node/3442349">https://www.drupal.org/node/3442349</a></li>
+</ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1409,7 +1404,43 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="38" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="38" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+;" data-marpit-pagination-total="66" data-size="16:9">
+<h2 id="hook-service-classes-2">Hook Service Classes</h2>
+<ul>
+<li>Define the service to put our hooks in.</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">services_hooks_example.node_hooks:</span>
+    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_hooks_example\Hook\NodeHooks</span>
+    <span class="hljs-attr">autowire:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+" lang="C" class="lead invert" data-marpit-pagination="39" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1442,44 +1473,6 @@ p.centre {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-" lang="C" class="lead invert" data-marpit-pagination="39" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="hook-service-classes-4">Hook Service Classes</h2>
-<ul>
-<li>For the time being, you are encouraged to add a shim procedural hook in the usual place.</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Drupal</span>\<span class="hljs-title">node</span>\<span class="hljs-title">NodeInterface</span>;
-
-<span class="hljs-meta">#[LegacyHook</span><span class="hljs-meta">]</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mymodule_node_insert</span>(<span class="hljs-params">NodeInterface <span class="hljs-variable">$node</span></span>) </span>{
-  <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_hooks_example.node_hooks&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nodeInsert</span>(<span class="hljs-variable">$node</span>);
-}
-</code></pre>
-<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
-</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
@@ -1505,12 +1498,16 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="hook-service-classes-5">Hook Service Classes</h2>
+<h2 id="hook-service-classes-4">Hook Service Classes</h2>
 <ul>
-<li>If you have no legacy hooks then you can improve performance by setting this parameter in your *.services.yml file.</li>
+<li>For the time being, you are encouraged to add a shim procedural hook in the usual place.</li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">parameters:</span>
-  <span class="hljs-attr">module_name.hooks_converted:</span> <span class="hljs-literal">true</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Drupal</span>\<span class="hljs-title">node</span>\<span class="hljs-title">NodeInterface</span>;
+
+<span class="hljs-meta">#[LegacyHook</span><span class="hljs-meta">]</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mymodule_node_insert</span>(<span class="hljs-params">NodeInterface <span class="hljs-variable">$node</span></span>) </span>{
+  <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_hooks_example.node_hooks&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nodeInsert</span>(<span class="hljs-variable">$node</span>);
+}
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -1539,7 +1536,13 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="tagged-services">Tagged Services</h1>
+<h2 id="hook-service-classes-5">Hook Service Classes</h2>
+<ul>
+<li>If you have no legacy hooks then you can improve performance by setting this parameter in your *.services.yml file.</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">parameters:</span>
+  <span class="hljs-attr">module_name.hooks_converted:</span> <span class="hljs-literal">true</span>
+</code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -1567,12 +1570,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="tagged-services-1">Tagged Services</h2>
-<ul>
-<li>Some services can be tagged.</li>
-<li>This gives them special abilities.</li>
-<li>Listening to events, controlling access, set up caching, etc.</li>
-</ul>
+<h1 id="tagged-services">Tagged Services</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
@@ -1600,20 +1598,15 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="tagged-services---events">Tagged Services - Events</h2>
+<h2 id="tagged-services-1">Tagged Services</h2>
 <ul>
-<li>The simplest tagged service is the event handler.</li>
-<li>This service will be triggered when events happen.</li>
+<li>Some services can be tagged.</li>
+<li>This gives them special abilities.</li>
+<li>Listening to events, controlling access, set up caching, etc.</li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">eventsubscriber_example.eventlistner_service:</span>
-    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\eventsubscriber_example\EventSubscriber\EventListenerService</span>
-    <span class="hljs-attr">tags:</span>
-      <span class="hljs-bullet">-</span> { <span class="hljs-attr">name:</span> <span class="hljs-string">event_subscriber</span> }
-</code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1625,7 +1618,45 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="44" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="44" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+;" data-marpit-pagination-total="66" data-size="16:9">
+<h2 id="tagged-services---events">Tagged Services - Events</h2>
+<ul>
+<li>The simplest tagged service is the event subscriber.</li>
+<li>This service will be triggered when events happen.</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">eventsubscriber_example.eventlistner_service:</span>
+    <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\eventsubscriber_example\EventSubscriber\EventListenerService</span>
+    <span class="hljs-attr">tags:</span>
+      <span class="hljs-bullet">-</span> { <span class="hljs-attr">name:</span> <span class="hljs-string">event_subscriber</span> }
+</code></pre>
+<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+  font-size: 0.75rem;
+}
+p {
+  text-align: left;
+}
+p.centre {
+  text-align: center;
+}
+.hidden-bullets li {
+  list-style-type: none
+}
+" lang="C" class="lead invert" data-marpit-pagination="45" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1657,7 +1688,7 @@ p.centre {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1669,7 +1700,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="45" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="46" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1696,7 +1727,7 @@ p.centre {
 <li>For events, Drupal looks for services that extend <p class="small-text">\Symfony\Component\EventDispatcher\EventSubscriberInterface</p></li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1708,7 +1739,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="46" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="47" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1724,7 +1755,7 @@ p.centre {
 <h1 id="tips-for-creating-services">Tips For Creating Services</h1>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-marpit-fragments="3" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-marpit-fragments="3" data-paginate="true" data-class="lead invert" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1736,7 +1767,7 @@ p.centre {
 .hidden-bullets li {
   list-style-type: none
 }
-" lang="C" class="lead invert" data-marpit-pagination="47" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
+" lang="C" class="lead invert" data-marpit-pagination="48" style="--paginate:true;--class:lead invert;--theme:uncover;--style:.small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1751,7 +1782,7 @@ p.centre {
 ;" data-marpit-pagination-total="66" data-size="16:9">
 <h2 id="tips-for-creating-services-1">Tips For Creating Services</h2>
 <ul>
-<li>Don't use <code>\Drupal::services()</code> inside your service classes, use depedency injection instead.</li>
+<li>Don't use <code>\Drupal::service()</code> inside your service classes, use depedency injection instead.</li>
 </ul>
 <ul>
 <li data-marpit-fragment="1">Use <strong>SOLID</strong> principles. Create small service classes that perform one task.</li>
@@ -1759,42 +1790,7 @@ p.centre {
 <li data-marpit-fragment="3">Keep constructors as simple as possible. Just assign your dependencies to properties.</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-marpit-fragments="2" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-" lang="C" class="lead invert" data-marpit-pagination="48" style="--paginate:true;--class:lead invert;--footer:Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42);--theme:uncover;--style:.small-text {
-  font-size: 0.75rem;
-}
-p {
-  text-align: left;
-}
-p.centre {
-  text-align: center;
-}
-.hidden-bullets li {
-  list-style-type: none
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="tips-for-creating-services-2">Tips For Creating Services</h2>
-<ul>
-<li>Don't &quot;hand off&quot; dependencies to internal classes, use additional services.</li>
-</ul>
-<ul>
-<li data-marpit-fragment="1">Consider not creating a service if the class has no dependencies.</li>
-<li data-marpit-fragment="2">If you need to alter the class at runtime then make a service to allow Drupal to do that.</li>
-</ul>
-<footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-marpit-fragments="2" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {
   font-size: 0.75rem;
 }
 p {
@@ -1819,15 +1815,13 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="tips-for-creating-services-3">Tips For Creating Services</h2>
+<h2 id="tips-for-creating-services-2">Tips For Creating Services</h2>
 <ul>
-<li>Services make unit testing much easier.
-<ul>
-<li>Test your services on their own with <strong>unit testing</strong>.</li>
-<li>Then move up to <strong>functional testing</strong> for testing services working together.</li>
-<li><strong>Functional tests</strong> can test your module controllers, forms, drush commands etc.</li>
+<li>Don't &quot;hand off&quot; dependencies to internal classes, use additional services.</li>
 </ul>
-</li>
+<ul>
+<li data-marpit-fragment="1">Consider not creating a service if the class has no dependencies.</li>
+<li data-marpit-fragment="2">If you need to alter the class at runtime then make a service to allow Drupal to do that.</li>
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -2385,7 +2379,7 @@ p.centre {
 <h2 id="resources-1">Resources</h2>
 <ul>
 <li>Services and Dependency Injection - <small><a href="https://www.drupalatyourfingertips.com/services">https://www.drupalatyourfingertips.com/services</a></small></li>
-<li>Structure of a service file <a href="https://www.drupal.org/docs/drupal-apis/services-and-dependency-injection/structure-of-a-service-file">https://www.drupal.org/docs/drupal-apis/services-and-dependency-injection/structure-of-a-service-file</a></li>
+<li>Structure of a service file <a href="https://bit.ly/4hOh1ZT">https://bit.ly/4hOh1ZT</a></li>
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -2536,9 +2530,9 @@ This talk will assume you have some understanding of PHP and OOP, but if you get
 - If you are going to build or maintain a module then you will use services.
 - I quite like back to basics talks.
 - Coming soon are service hooks. We will soon lose some hooks and need to use service based hooks instead.</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>This is the path alias manger service. The above code will convert
-&quot;somepath&quot; into a Drupal path, something like &quot;node/123&quot;.</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>Think SOLID principles.</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>Dependency Inversion principle.</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>We are injecting the service to generate passwords.</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>Parameters are set in services files, but can be overridden at runtime by Drupal.
-Strings are used to pass static properties to factories to generate different types of object.</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>This is call constructor property promotion. The $passwordGenerator property is created in our class.
-Requiring the interface follows SOLID principles, in this case the dependency inversion principle.</p></div><div class="bespoke-marp-note" data-index="25" tabindex="0"><p>This is from the Drupal core.services.yml file, where a lot of services are defined.</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>The static() here is a reference to the current class. This calls the constructor but you probably don't need to define the controller.</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>Plugins work in the same way, but plugins will have additional arguments that need to be passed upstream.</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>This technique comes in useful when making blocks, creating views plugsin, migration plugins and so on.</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>This isn't a rug pull. All your normal hooks will work for the time being (we'll come onto that).</p></div><div class="bespoke-marp-note" data-index="38" tabindex="0"><p>There doesn't appear to be any word on deprications of procedural hooks.
+&quot;somepath&quot; into a Drupal path, something like &quot;node/123&quot;.</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>Think SOLID principles.</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>Dependency Inversion principle.</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>We are injecting the service to generate passwords.</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>Parameters are set in services files, but can be overridden at runtime by Drupal.
+Strings are used to pass static properties to factories to generate different types of object.</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>This is call constructor property promotion. The $passwordGenerator property is created in our class.
+Requiring the interface follows SOLID principles, in this case the dependency inversion principle.</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>This is from the Drupal core.services.yml file, where a lot of services are defined.</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>The static() here is a reference to the current class. This calls the constructor but you probably don't need to define the controller.</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>Plugins work in the same way, but plugins will have additional arguments that need to be passed upstream.</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>This technique comes in useful when making blocks, creating views plugsin, migration plugins and so on.</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>This isn't a rug pull. All your normal hooks will work for the time being (we'll come onto that).</p></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>There doesn't appear to be any word on deprications of procedural hooks.
 In fact many theme and install hooks will remain.
 The aim is to allow low level hooks that have no dependencies to operate as they always have.</p></div><div class="bespoke-marp-note" data-index="51" tabindex="0"><p>Here, we are decorating the password_generator and creating our own service called services_decorator_example.decorated_password_generator.
 The critical thing is that the existing service class still exists. The new service just extends that.</p></div><div class="bespoke-marp-note" data-index="53" tabindex="0"><p>Use register() to register a new service in Drupal. Useful for highly dynamic services where you want to automatically create your services at run time.

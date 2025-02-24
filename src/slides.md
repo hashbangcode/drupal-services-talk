@@ -91,6 +91,8 @@ This talk will assume you have some understanding of PHP and OOP, but if you get
 
 * <strong>Dependency injection</strong> is used to inject services into other services.
 
+* Sercices make unit testing much easier.
+
 * Simple to use and powerful.
 
 ---
@@ -129,6 +131,10 @@ This is the path alias manger service. The above code will convert
 ```php
 $normalPath = \Drupal::service('path_alias.manager')->getPathByAlias('somepath');
 ```
+
+---
+
+# What Services Exist?
 
 ---
 
@@ -572,7 +578,7 @@ parameters:
 
 ## Tagged Services - Events
 
-- The simplest tagged service is the event handler.
+- The simplest tagged service is the event subscriber.
 - This service will be triggered when events happen.
 
 ```yml
@@ -631,7 +637,7 @@ services:
 <!-- _footer: "" -->
 ## Tips For Creating Services
 
-- Don't use `\Drupal::services()` inside your service classes, use depedency injection instead.
+- Don't use `\Drupal::service()` inside your service classes, use depedency injection instead.
 * Use <strong>SOLID</strong> principles. Create small service classes that perform one task.
 * Don't have services with lots of arguments. This tends to show that the service is doing too much.
 * Keep constructors as simple as possible. Just assign your dependencies to properties.
@@ -642,15 +648,6 @@ services:
 - Don't "hand off" dependencies to internal classes, use additional services.
 * Consider not creating a service if the class has no dependencies.
 * If you need to alter the class at runtime then make a service to allow Drupal to do that.
-
----
-
-## Tips For Creating Services
-
-- Services make unit testing much easier.
-  - Test your services on their own with <strong>unit testing</strong>.
-  - Then move up to <strong>functional testing</strong> for testing services working together.
-  - <strong>Functional tests</strong> can test your module controllers, forms, drush commands etc.
 
 ---
 
@@ -864,7 +861,7 @@ There's much more to Drupal services, try looking up
 ---
 ## Resources
 - Services and Dependency Injection - <small>https://www.drupalatyourfingertips.com/services</small>
-- Structure of a service file https://www.drupal.org/docs/drupal-apis/services-and-dependency-injection/structure-of-a-service-file
+- Structure of a service file https://bit.ly/4hOh1ZT
 
 ---
 

@@ -91,7 +91,7 @@ This talk will assume you have some understanding of PHP and OOP, but if you get
 
 * <strong>Dependency injection</strong> is used to inject services into other services.
 
-* Sercices make unit testing much easier.
+* Services make unit testing much easier.
 
 * Simple to use and powerful.
 
@@ -161,7 +161,7 @@ drush eval "print_r(\Drupal::getContainer()->getServiceIds());"
 
 ---
 
-# Dependecny Injection
+# Dependency Injection
 
 A quick introduction.
 
@@ -450,7 +450,7 @@ The static() here is a reference to the current class. This calls the constructo
 ```
 \Drupal\Core\Plugin\ContainerFactoryPluginInterface
 ```
-- This has the same `create()` method system, although you need to pass the plugin arguments to the parent controller.
+- This has the same `create()` method system, although you need to pass the plugin arguments to the parent constructor.
 
 <!--
 Plugins work in the same way, but plugins will have additional arguments that need to be passed upstream. 
@@ -459,7 +459,7 @@ Plugins work in the same way, but plugins will have additional arguments that ne
 
 ## Plugins
 
-- The plugin controller does have a function in this instance.
+- The plugin constructor does need to receive arguments for plugins.
 
 ```php
   public static function create(ContainerInterface $container, 
@@ -637,7 +637,7 @@ services:
 <!-- _footer: "" -->
 ## Tips For Creating Services
 
-- Don't use `\Drupal::service()` inside your service classes, use depedency injection instead.
+- Don't use `\Drupal::service()` inside your service classes, use dependency injection instead.
 * Use <strong>SOLID</strong> principles. Create small service classes that perform one task.
 * Don't have services with lots of arguments. This tends to show that the service is doing too much.
 * Keep constructors as simple as possible. Just assign your dependencies to properties.

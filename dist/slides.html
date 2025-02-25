@@ -275,7 +275,7 @@ p.centre {
 <p><strong>Dependency injection</strong> is used to inject services into other services.</p>
 </li>
 <li data-marpit-fragment="4">
-<p>Sercices make unit testing much easier.</p>
+<p>Services make unit testing much easier.</p>
 </li>
 <li data-marpit-fragment="5">
 <p>Simple to use and powerful.</p>
@@ -539,7 +539,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="dependecny-injection">Dependecny Injection</h1>
+<h1 id="dependency-injection">Dependency Injection</h1>
 <p>A quick introduction.</p>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -568,7 +568,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="dependency-injection">Dependency Injection</h2>
+<h2 id="dependency-injection-1">Dependency Injection</h2>
 <p>Dependecy injection sounds complicated, but its just the practice of <strong>injecting the things the object needs</strong>, instead of <strong>baking them into the class</strong>.</p>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -597,7 +597,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="dependency-injection-1">Dependency Injection</h2>
+<h2 id="dependency-injection-2">Dependency Injection</h2>
 <ul>
 <li>Let's say you had this class (not a Drupal thing).</li>
 </ul>
@@ -640,7 +640,7 @@ p.centre {
   list-style-type: none
 }
 ;" data-marpit-pagination-total="66" data-size="16:9">
-<h2 id="dependency-injection-2">Dependency Injection</h2>
+<h2 id="dependency-injection-3">Dependency Injection</h2>
 <ul>
 <li>We can change this to inject the database dependency as we create the Page object.</li>
 </ul>
@@ -1279,7 +1279,7 @@ p.centre {
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>\Drupal\Core\Plugin\ContainerFactoryPluginInterface
 </code></pre>
 <ul>
-<li>This has the same <code>create()</code> method system, although you need to pass the plugin arguments to the parent controller.</li>
+<li>This has the same <code>create()</code> method system, although you need to pass the plugin arguments to the parent constructor.</li>
 </ul>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -1310,7 +1310,7 @@ p.centre {
 ;" data-marpit-pagination-total="66" data-size="16:9">
 <h2 id="plugins-1">Plugins</h2>
 <ul>
-<li>The plugin controller does have a function in this instance.</li>
+<li>The plugin constructor does need to receive arguments for plugins.</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php">  <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create</span>(<span class="hljs-params">ContainerInterface <span class="hljs-variable">$container</span>, 
     <span class="hljs-keyword">array</span> <span class="hljs-variable">$configuration</span>,
@@ -1782,7 +1782,7 @@ p.centre {
 ;" data-marpit-pagination-total="66" data-size="16:9">
 <h2 id="tips-for-creating-services-1">Tips For Creating Services</h2>
 <ul>
-<li>Don't use <code>\Drupal::service()</code> inside your service classes, use depedency injection instead.</li>
+<li>Don't use <code>\Drupal::service()</code> inside your service classes, use dependency injection instead.</li>
 </ul>
 <ul>
 <li data-marpit-fragment="1">Use <strong>SOLID</strong> principles. Create small service classes that perform one task.</li>

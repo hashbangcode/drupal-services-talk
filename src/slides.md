@@ -542,7 +542,7 @@ class NodeHooks {
 use Drupal\node\NodeInterface;
 
 #[LegacyHook]
-function mymodule_node_insert(NodeInterface $node) {
+function services_hooks_example_node_insert(NodeInterface $node) {
   \Drupal::service('services_hooks_example.node_hooks')->nodeInsert($node);
 }
 ```
@@ -559,7 +559,7 @@ The aim is to allow low level hooks that have no dependencies to operate as they
 
 ```yml
 parameters:
-  module_name.hooks_converted: true
+  services_hooks_example.hooks_converted: true
 ```
 
 ---
@@ -626,7 +626,7 @@ services:
   services_autoconfigure_example.autoconfigured_service:
     class: \Drupal\services_autoconfigure_example\EventSubscriber\AutoconfiguredService
 ```
-- For events, Drupal looks for services that extend <p class="small-text">\Symfony\Component\EventDispatcher\EventSubscriberInterface</p>
+- For events, Drupal looks for services that implement <p class="small-text">\Symfony\Component\EventDispatcher\EventSubscriberInterface</p>
 
 ---
 

@@ -1505,7 +1505,7 @@ p.centre {
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Drupal</span>\<span class="hljs-title">node</span>\<span class="hljs-title">NodeInterface</span>;
 
 <span class="hljs-meta">#[LegacyHook</span><span class="hljs-meta">]</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mymodule_node_insert</span>(<span class="hljs-params">NodeInterface <span class="hljs-variable">$node</span></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">services_hooks_example_node_insert</span>(<span class="hljs-params">NodeInterface <span class="hljs-variable">$node</span></span>) </span>{
   <span class="hljs-title class_">\Drupal</span>::<span class="hljs-title function_ invoke__">service</span>(<span class="hljs-string">&#x27;services_hooks_example.node_hooks&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">nodeInsert</span>(<span class="hljs-variable">$node</span>);
 }
 </code></pre>
@@ -1541,7 +1541,7 @@ p.centre {
 <li>If you have no legacy hooks then you can improve performance by setting this parameter in your *.services.yml file.</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yml"><span class="hljs-attr">parameters:</span>
-  <span class="hljs-attr">module_name.hooks_converted:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">services_hooks_example.hooks_converted:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <footer>Philip Norton <a href="https://www.hashbangcode.com">hashbangcode.com</a> <a href="https://fosstodon.org/@hashbangcode">fosstodon.org@hashbangcode</a> <a href="https://fosstodon.org/@philipnorton42">fosstodon.org@philipnorton42</a></footer>
 </section>
@@ -1724,7 +1724,7 @@ p.centre {
     <span class="hljs-attr">class:</span> <span class="hljs-string">\Drupal\services_autoconfigure_example\EventSubscriber\AutoconfiguredService</span>
 </code></pre>
 <ul>
-<li>For events, Drupal looks for services that extend <p class="small-text">\Symfony\Component\EventDispatcher\EventSubscriberInterface</p></li>
+<li>For events, Drupal looks for services that implement <p class="small-text">\Symfony\Component\EventDispatcher\EventSubscriberInterface</p></li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-class="lead invert" data-footer="Philip Norton [hashbangcode.com](https://www.hashbangcode.com) [fosstodon.org@hashbangcode](https://fosstodon.org/@hashbangcode) [fosstodon.org@philipnorton42](https://fosstodon.org/@philipnorton42)" data-theme="uncover" data-style=".small-text {

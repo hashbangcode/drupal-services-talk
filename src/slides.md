@@ -169,7 +169,7 @@ A quick introduction.
 
 ## Dependency Injection
 
-Dependecy injection sounds complicated, but its just the practice of <strong>injecting the things the object needs</strong>, instead of <strong>baking them into the class</strong>.
+Dependency injection sounds complicated, but its just the practice of <strong>injecting the things the object needs</strong>, instead of <strong>baking them into the class</strong>.
 
 ---
 
@@ -657,7 +657,7 @@ services:
 
 ## Altering Services
 
-- All services can be modified to change their funcitonality.
+- All services can be modified to change their functionality.
 - This can be done in two ways, depending on your needs:
   - Decorating
   - Altering
